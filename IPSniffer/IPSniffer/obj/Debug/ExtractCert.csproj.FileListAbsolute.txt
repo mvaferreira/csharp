@@ -1,0 +1,5 @@
+C:\Marcus\Dev\ExtractCert\ExtractCert\bin\Debug\ExtractCert.exe.config
+C:\Marcus\Dev\ExtractCert\ExtractCert\bin\Debug\ExtractCert.exe
+C:\Marcus\Dev\ExtractCert\ExtractCert\bin\Debug\ExtractCert.pdb
+C:\Marcus\Dev\ExtractCert\ExtractCert\obj\Debug\ExtractCert.exe
+C:\Marcus\Dev\ExtractCert\ExtractCert\obj\Debug\ExtractCert.pdb
