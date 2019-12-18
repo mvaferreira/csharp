@@ -9,4 +9,4 @@ This repository contains useful tools which have been developed with the intent 
 # Tools
 [IPSniffer](https://github.com/mvaferreira/csharp/tree/master/IPSniffer/IPSniffer/bin/x64/Release) - Simple IP sniffer, capable of extracting source/destination IP, TCP, UDP, ICMP, IGMP and DNS headers.
 
-[ExtractCert](https://github.com/mvaferreira/csharp/tree/master/ExtractCert/ExtractCert/bin/x64/Release) - A tool to export or view certificate info, from web sites or tcp services, like LDAPS.
+[ExtractCert](https://github.com/mvaferreira/csharp/releases) - A tool to export or view certificate info, from web sites or tcp services, like LDAPS.
