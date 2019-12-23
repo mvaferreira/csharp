@@ -3,3 +3,8 @@ C:\Marcus\Dev\IPSniffer\IPSniffer\bin\x64\Release\IPSniffer.exe
 C:\Marcus\Dev\IPSniffer\IPSniffer\bin\x64\Release\IPSniffer.pdb
 C:\Marcus\Dev\IPSniffer\IPSniffer\obj\x64\Release\IPSniffer.exe
 C:\Marcus\Dev\IPSniffer\IPSniffer\obj\x64\Release\IPSniffer.pdb
+C:\Marcus\Dev-public\IPSniffer\IPSniffer\bin\x64\Release\IPSniffer.exe.config
+C:\Marcus\Dev-public\IPSniffer\IPSniffer\bin\x64\Release\IPSniffer.exe
+C:\Marcus\Dev-public\IPSniffer\IPSniffer\bin\x64\Release\IPSniffer.pdb
+C:\Marcus\Dev-public\IPSniffer\IPSniffer\obj\x64\Release\IPSniffer.exe
+C:\Marcus\Dev-public\IPSniffer\IPSniffer\obj\x64\Release\IPSniffer.pdb

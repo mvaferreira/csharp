@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 
 namespace IPSniffer
 {
@@ -6,34 +9,39 @@ namespace IPSniffer
     {
         static void Main(string[] args)
         {
-            SnifferProgram prog;
             string proto = string.Empty;
             string port = string.Empty;
             string localIP = string.Empty;
+            int maxParams = args.Length - 1;
 
-            if (args.Length > 1)
+            if (maxParams >= 0)
             {
-                for (int i=0; i<args.Length; i++)
+                for (int i=0; i <= maxParams; i++)
                 {
                     switch(args[i])
                     {
+                        case "-H":
+                        case "-h":
+                            ShowHelp();
+                            Environment.Exit(0);
+                            break;
                         case "-localIP":
                         case "-localip":
-                            if (args[i + 1] != string.Empty)
+                            if (maxParams > i)
                             {
                                 localIP = args[i + 1];
                             }
                             break;
                         case "-P":
                         case "-p":
-                            if (args[i + 1] != string.Empty)
+                            if (maxParams > i)
                             {
                                 proto = args[i + 1];
                             }
                             break;
                         case "-PORT":
                         case "-port":
-                            if (args[i + 1] != string.Empty)
+                            if (maxParams > i)
                             {
                                 port = args[i + 1];
                             }
@@ -42,33 +50,45 @@ namespace IPSniffer
                             break;
                     }
                 }
-            }
-            else
-            {
-                if (localIP == string.Empty)
+
+                //Checking if valid parameters specified.
+                if (localIP != string.Empty)
                 {
-                    Console.WriteLine("Specify local IP with -localIP parameter");
-                    Console.WriteLine();
+                    if (localIP != string.Empty && proto != string.Empty && port != string.Empty)
+                    {
+                        new Sniffer(localIP, proto, port).StartCapturing();
+                    }
+                    else
+                    {
+                        new Sniffer(localIP).StartCapturing();
+                    }
+                }
+                else
+                {
+                    //-localIP switch specified, but no IP address added.
                     ShowHelp();
-                    return;
+                    Environment.Exit(-1);
                 }
             }
-
-            if (proto == string.Empty && port == string.Empty)
-            {
-                prog = new SnifferProgram(localIP);
-            }
             else
             {
-                prog = new SnifferProgram(localIP, proto, port);
-            }
+                //No parameter specified.
+                if (localIP == string.Empty)
+                {
+                    var IPv4Addresses = Dns.GetHostEntry(Dns.GetHostName())
+                    .AddressList.Where(al => al.AddressFamily == AddressFamily.InterNetwork)
+                    .AsEnumerable();
 
-            prog.StartCapturing();
+                    foreach (IPAddress ip in IPv4Addresses)
+                    {
+                        new Sniffer(ip.ToString()).StartCapturing();
+                    }
+                }
+            }
         }
         private static void ShowHelp()
         {
-            Console.WriteLine("Usage: IPSniffer.exe -localIP <listen_ip> [-p tcp|udp] [-port 1-65535]");
-            return;
+            Console.WriteLine("Usage: IPSniffer.exe [-h] [-localIP <listen_ip>] [-p tcp|udp] [-port 1-65535]");
         }
     }
 }

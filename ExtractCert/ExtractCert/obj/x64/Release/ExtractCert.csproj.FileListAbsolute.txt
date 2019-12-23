@@ -6,5 +6,6 @@ C:\Marcus\Dev\ExtractCert\ExtractCert\obj\x64\Release\ExtractCert.pdb
 C:\Marcus\Dev-public\ExtractCert\ExtractCert\bin\x64\Release\ExtractCert.exe.config
 C:\Marcus\Dev-public\ExtractCert\ExtractCert\bin\x64\Release\ExtractCert.exe
 C:\Marcus\Dev-public\ExtractCert\ExtractCert\bin\x64\Release\ExtractCert.pdb
+C:\Marcus\Dev-public\ExtractCert\ExtractCert\obj\x64\Release\ExtractCert.csprojAssemblyReference.cache
 C:\Marcus\Dev-public\ExtractCert\ExtractCert\obj\x64\Release\ExtractCert.exe
 C:\Marcus\Dev-public\ExtractCert\ExtractCert\obj\x64\Release\ExtractCert.pdb

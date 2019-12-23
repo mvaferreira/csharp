@@ -3,7 +3,7 @@ using System.Net;
 
 namespace IPSniffer
 {
-    public class DNSHeader
+    public class DNS
     {
         //DNS header fields
         private ushort usIdentification;        //Sixteen bits for identification
@@ -18,7 +18,7 @@ namespace IPSniffer
                                                 //entries in the additional resource record list
         //End DNS header fields
 
-        public DNSHeader(byte []byBuffer, int nReceived)
+        public DNS(byte []byBuffer, int nReceived)
         {
             MemoryStream memoryStream = new MemoryStream(byBuffer, 0, nReceived);
             BinaryReader binaryReader = new BinaryReader(memoryStream);    

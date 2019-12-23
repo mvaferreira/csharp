@@ -14,7 +14,7 @@ namespace IPSniffer
         Unknown = -1
     };
 
-    public class SnifferProgram
+    public class Sniffer
     {
         Socket _socket;
         Thread thrStartCapturing = null;
@@ -28,12 +28,12 @@ namespace IPSniffer
         string localIP = string.Empty;
         IP ipHeader;
 
-        public SnifferProgram(string localIP) 
+        public Sniffer(string localIP) 
         {
             this.localIP = localIP;
         }
 
-        public SnifferProgram(string localIP, string proto, string port)
+        public Sniffer(string localIP, string proto, string port)
         {
             this.localIP = localIP;
             this.proto = proto;
@@ -106,7 +106,7 @@ namespace IPSniffer
                     //DNS
                     if ((tcpHeader.DestinationPort == "53" || tcpHeader.SourcePort == "53") && (showData == "tcp53" || showData == string.Empty))
                     {
-                        DNSHeader dnsHeader = new DNSHeader(tcpHeader.Data, (int)tcpHeader.MessageLength);
+                        DNS dnsHeader = new DNS(tcpHeader.Data, (int)tcpHeader.MessageLength);
 
                         Console.WriteLine("[{0}] {1}:{2} -> {3}:{4} | {5}", DateTime.Now, ipHeader.SourceAddress, tcpHeader.SourcePort, ipHeader.DestinationAddress, tcpHeader.DestinationPort, "IP > TCP > DNS");
                         Console.WriteLine("Identification: {0}\r\nFlags: {1}\r\nQuestions: {2}\r\nAnswer RRs: {3}\r\nAuthority RRs: {4}\r\nAdditional RRs: {5}", dnsHeader.Identification, dnsHeader.Flags, dnsHeader.TotalQuestions, dnsHeader.TotalAnswerRRs, dnsHeader.TotalAuthorityRRs, dnsHeader.TotalAdditionalRRs);
@@ -146,7 +146,7 @@ namespace IPSniffer
                     if ((udpHeader.DestinationPort == "53" || udpHeader.SourcePort == "53") && (showData == "udp53" || showData == string.Empty))
                     {
                         Console.WriteLine("[{0}] {1}:{2} -> {3}:{4} | {5}", DateTime.Now, ipHeader.SourceAddress, udpHeader.SourcePort, ipHeader.DestinationAddress, udpHeader.DestinationPort, "IP > UDP > DNS");
-                        DNSHeader dnsHeader = new DNSHeader(udpHeader.Data, Convert.ToInt32(udpHeader.Length) - 8);
+                        DNS dnsHeader = new DNS(udpHeader.Data, Convert.ToInt32(udpHeader.Length) - 8);
                         Console.WriteLine("Identification: {0}\r\nFlags: {1}\r\nQuestions: {2}\r\nAnswer RRs: {3}\r\nAuthority RRs: {4}\r\nAdditional RRs: {5}", dnsHeader.Identification, dnsHeader.Flags, dnsHeader.TotalQuestions, dnsHeader.TotalAnswerRRs, dnsHeader.TotalAuthorityRRs, dnsHeader.TotalAdditionalRRs);
 
                         output = System.Text.Encoding.Default.GetString(udpHeader.Data);
