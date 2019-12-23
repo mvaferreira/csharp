@@ -1,0 +1,7 @@
+C:\Marcus\Dev-public\ClientLogging\ClientLogging\bin\x86\Release\ClientLogging.exe.config
+C:\Marcus\Dev-public\ClientLogging\ClientLogging\bin\x86\Release\ClientLogging.exe
+C:\Marcus\Dev-public\ClientLogging\ClientLogging\bin\x86\Release\ClientLogging.pdb
+C:\Marcus\Dev-public\ClientLogging\ClientLogging\bin\x86\Release\System.Data.SQLite.dll
+C:\Marcus\Dev-public\ClientLogging\ClientLogging\obj\x86\Release\ClientLogging.csproj.CopyComplete
+C:\Marcus\Dev-public\ClientLogging\ClientLogging\obj\x86\Release\ClientLogging.exe
+C:\Marcus\Dev-public\ClientLogging\ClientLogging\obj\x86\Release\ClientLogging.pdb
