@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
 using System.Reflection;
@@ -25,6 +26,7 @@ namespace ClientLogging
         {
             string createDBSQL = @"CREATE TABLE Clients(
                                       ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                                      ClientName TEXT,
                                       ClientIP TEXT NOT NULL,
                                       ClientPort TEXT NOT NULL,
                                       DestinationIP TEXT NOT NULL,
@@ -82,7 +84,7 @@ namespace ClientLogging
             return clientCount;
         }
 
-        public void AddClient(string clientIP, string clientPort, string destinationIP, string destinationPort, string protocol, string timestamp)
+        public void AddClient(string clientName, string clientIP, string clientPort, string destinationIP, string destinationPort, string protocol, string timestamp)
         {
             string clientSQL;
             int howMany = CheckClient(clientIP, destinationPort, protocol);
@@ -90,9 +92,9 @@ namespace ClientLogging
             if (howMany == 0)
             {
                 howMany++;
-                Console.WriteLine("[{0}] {1} -> {2}/{3}", timestamp, clientIP, protocol, destinationPort);
-                clientSQL = "INSERT into Clients(ClientIP,ClientPort,DestinationIP,DestinationPort,Protocol,Count,Timestamp) " +
-                              "VALUES('" + clientIP + "','" + clientPort + "','" + destinationIP + "','" +
+                Console.WriteLine("[{0}] {1} [{2}] -> {3}/{4}", timestamp, clientName, clientIP, protocol, destinationPort);
+                clientSQL = "INSERT into Clients(ClientName,ClientIP,ClientPort,DestinationIP,DestinationPort,Protocol,Count,Timestamp) " +
+                              "VALUES('" + clientName + "','" + clientIP + "','" + clientPort + "','" + destinationIP + "','" +
                               destinationPort + "','" + protocol + "'," + howMany + ",'" + timestamp + "')";
             }
             else
@@ -117,7 +119,7 @@ namespace ClientLogging
 
         public void ShowClients()
         {
-            string checkClientSQL = "SELECT ClientIP, Protocol, DestinationPort, Count " +
+            string checkClientSQL = "SELECT ClientName, ClientIP, Protocol, DestinationPort, Count " +
                                     "FROM Clients Order by ClientIP, Protocol, DestinationPort";
 
             using (conn = new SQLiteConnection(strConn))
@@ -136,7 +138,7 @@ namespace ClientLogging
 
                         if (dbClient != client)
                         {
-                            Console.WriteLine("{0}", dr["ClientIP"]);
+                            Console.WriteLine("{0} [{1}]", dr["ClientName"], dr["ClientIP"]);
                             client = dbClient;
                         }
 
@@ -149,6 +151,47 @@ namespace ClientLogging
                     }
                 }
             }
+        }
+
+        public List<string> ExportClients()
+        {
+            string checkClientSQL = "SELECT * " +
+                                    "FROM Clients Order by ClientIP, Protocol, DestinationPort";
+
+            List<string> clients = new List<string>();
+
+            using (conn = new SQLiteConnection(strConn))
+            {
+                conn.Open();
+
+                using (cmd = new SQLiteCommand(checkClientSQL, conn))
+                {
+                    dr = cmd.ExecuteReader();
+
+                    string client = string.Empty;
+
+                    clients.Add("Timestamp,ClientName,ClientIP,ClientPort,DestinationIP,DestinationPort,Protocol,Count" + Environment.NewLine);
+
+                    while (dr.Read())
+                    {
+                        clients.Add(dr["Timestamp"] + "," +
+                                    dr["ClientName"] + "," +
+                                    dr["ClientIP"] + "," +
+                                    dr["ClientPort"] + "," +
+                                    dr["DestinationIP"] + "," +
+                                    dr["DestinationPort"] + "," +
+                                    dr["Protocol"] + "," +
+                                    dr["Count"] + Environment.NewLine);
+                    }
+
+                    if (!dr.IsClosed)
+                    {
+                        dr.Close();
+                    }
+                }
+            }
+
+            return clients;
         }
     }
 }

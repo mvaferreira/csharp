@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 
 namespace ClientLogging
 {
@@ -16,8 +19,10 @@ namespace ClientLogging
                     switch (args[i])
                     {
                         case "-view":
-                            Database db = new Database();
-                            db.ShowClients();
+                            new Database().ShowClients();
+                            break;
+                        case "-exportcsv":
+                            ExportCSV(new Database().ExportClients());
                             break;
                         default:
                             ShowHelp();
@@ -38,9 +43,40 @@ namespace ClientLogging
             }
         }
 
+        private static void ExportCSV(List<string> clients)
+        {
+            FileStream fs1;
+
+            try
+            {
+                if (null != clients)
+                {
+                    if (clients.Count > 0)
+                    {
+                        fs1 = new FileStream(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\ClientLogging.csv",
+                                             FileMode.OpenOrCreate,
+                                             FileAccess.Write);
+
+                        foreach (string client in clients)
+                        {
+                            fs1.Write(Encoding.UTF8.GetBytes(client), 0, client.Length);
+                        }
+
+                        fs1.Flush();
+                        fs1.Close();
+                        fs1.Dispose();
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("ExportCSV: {0}\n{1}", e.Message, e.StackTrace);
+            }
+        }
+
         private static void ShowHelp()
         {
-            Console.WriteLine("ClientLogging.exe [-view]");
+            Console.WriteLine("ClientLogging.exe [-view] [-exportcsv]");
         }
     }
 }

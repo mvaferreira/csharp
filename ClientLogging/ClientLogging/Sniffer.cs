@@ -79,28 +79,53 @@ namespace ClientLogging
 
         private void ParseData(IP ipHeader)
         {
-            switch (ipHeader.ProtocolType)
+            try
             {
-                //TCP
-                case Protocol.TCP:
-                    TCP tcpHeader = new TCP(ipHeader.Data, ipHeader.MessageLength);
-                    if (ipHeader.SourceAddress.ToString() != ip && tcpHeader.Flags == "0x02 (SYN)")
-                    {
-                        db.AddClient(ipHeader.SourceAddress.ToString(), tcpHeader.SourcePort, ipHeader.DestinationAddress.ToString(), tcpHeader.DestinationPort, "TCP", DateTime.Now.ToString());
-                    }
-                    break;
+                switch (ipHeader.ProtocolType)
+                {
+                    //TCP
+                    case Protocol.TCP:
+                        TCP tcpHeader = new TCP(ipHeader.Data, ipHeader.MessageLength);
+                        if (ipHeader.SourceAddress.ToString() != ip && tcpHeader.Flags == "0x02 (SYN)")
+                        {
+                            db.AddClient(Dns.GetHostEntry(ipHeader.SourceAddress).HostName ?? ipHeader.SourceAddress.ToString(),
+                                         ipHeader.SourceAddress.ToString(),
+                                         tcpHeader.SourcePort, ipHeader.DestinationAddress.ToString(),
+                                         tcpHeader.DestinationPort,
+                                         "TCP",
+                                         DateTime.Now.ToString());
+                        }
+                        break;
 
-                //UDP
-                case Protocol.UDP:
-                    UDP udpHeader = new UDP(ipHeader.Data, (int)ipHeader.MessageLength);
-                    if (ipHeader.SourceAddress.ToString() != ip && ipHeader.DestinationAddress.ToString() == ip)
-                    {
-                        db.AddClient(ipHeader.SourceAddress.ToString(), udpHeader.SourcePort, ipHeader.DestinationAddress.ToString(), udpHeader.DestinationPort, "UDP", DateTime.Now.ToString());
-                    }
-                    break;
+                    //UDP
+                    case Protocol.UDP:
+                        UDP udpHeader = new UDP(ipHeader.Data, (int)ipHeader.MessageLength);
+                        if (ipHeader.SourceAddress.ToString() != ip && ipHeader.DestinationAddress.ToString() == ip)
+                        {
+                            //ignore udp datagrams sent to ports higher than 49152,
+                            //since this isn't connection oriented, assume those datagrams are replies
+                            //from servers, making this a client.
+                            if (Convert.ToInt32(udpHeader.DestinationPort) < 49152)
+                            {
+                                db.AddClient(Dns.GetHostEntry(ipHeader.SourceAddress).HostName ?? ipHeader.SourceAddress.ToString(),
+                                             ipHeader.SourceAddress.ToString(),
+                                             udpHeader.SourcePort,
+                                             ipHeader.DestinationAddress.ToString(),
+                                             udpHeader.DestinationPort,
+                                             "UDP",
+                                             DateTime.Now.ToString());
+                            }
+                        }
+                        break;
 
-                case Protocol.Unknown:
-                    break;
+                    case Protocol.Unknown:
+                        break;
+                }
+            }
+            catch(SocketException) { }
+            catch(Exception e)
+            {
+                Console.WriteLine("ParseData: {0}\n{1}", e.Message, e.StackTrace);
             }
         }
     }
