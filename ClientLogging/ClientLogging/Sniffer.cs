@@ -88,7 +88,7 @@ namespace ClientLogging
                         TCP tcpHeader = new TCP(ipHeader.Data, ipHeader.MessageLength);
                         if (ipHeader.SourceAddress.ToString() != ip && tcpHeader.Flags == "0x02 (SYN)")
                         {
-                            db.AddClient(Dns.GetHostEntry(ipHeader.SourceAddress).HostName ?? ipHeader.SourceAddress.ToString(),
+                            db.AddClient(ResolveName(ipHeader.SourceAddress),
                                          ipHeader.SourceAddress.ToString(),
                                          tcpHeader.SourcePort, ipHeader.DestinationAddress.ToString(),
                                          tcpHeader.DestinationPort,
@@ -107,7 +107,7 @@ namespace ClientLogging
                             //from servers, making this a client.
                             if (Convert.ToInt32(udpHeader.DestinationPort) < 49152)
                             {
-                                db.AddClient(Dns.GetHostEntry(ipHeader.SourceAddress).HostName ?? ipHeader.SourceAddress.ToString(),
+                                db.AddClient(ResolveName(ipHeader.SourceAddress),
                                              ipHeader.SourceAddress.ToString(),
                                              udpHeader.SourcePort,
                                              ipHeader.DestinationAddress.ToString(),
@@ -122,10 +122,21 @@ namespace ClientLogging
                         break;
                 }
             }
-            catch(SocketException) { }
             catch(Exception e)
             {
                 Console.WriteLine("ParseData: {0}\n{1}", e.Message, e.StackTrace);
+            }
+        }
+
+        private string ResolveName(IPAddress ip)
+        {
+            try
+            {
+                return Dns.GetHostEntry(ipHeader.SourceAddress).HostName;
+            }
+            catch (Exception)
+            {
+                return ip.ToString();
             }
         }
     }
