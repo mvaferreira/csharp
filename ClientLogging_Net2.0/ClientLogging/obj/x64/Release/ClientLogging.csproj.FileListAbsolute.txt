@@ -33,3 +33,4 @@ C:\Marcus\Dev-public\ClientLogging_Net2.0\ClientLogging\bin\x64\Release\System.D
 C:\Marcus\Dev-public\ClientLogging_Net2.0\ClientLogging\obj\x64\Release\ClientLogging.csproj.CopyComplete
 C:\Marcus\Dev-public\ClientLogging_Net2.0\ClientLogging\obj\x64\Release\ClientLogging.exe
 C:\Marcus\Dev-public\ClientLogging_Net2.0\ClientLogging\obj\x64\Release\ClientLogging.pdb
+C:\Marcus\Dev-public\ClientLogging_Net2.0\ClientLogging\obj\x64\Release\ClientLogging.csprojAssemblyReference.cache
