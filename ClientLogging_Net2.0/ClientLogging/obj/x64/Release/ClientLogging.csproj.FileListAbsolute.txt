@@ -5,13 +5,6 @@ C:\Marcus\Dev\DCClientLogging\DCClientLogging\bin\x64\Release\System.Data.SQLite
 C:\Marcus\Dev\DCClientLogging\DCClientLogging\obj\x64\Release\ClientLogging.csproj.CopyComplete
 C:\Marcus\Dev\DCClientLogging\DCClientLogging\obj\x64\Release\DCClientLogging.exe
 C:\Marcus\Dev\DCClientLogging\DCClientLogging\obj\x64\Release\DCClientLogging.pdb
-C:\Marcus\Dev\ClientLogging\ClientLogging\bin\x64\Release\ClientLogging.exe.config
-C:\Marcus\Dev\ClientLogging\ClientLogging\bin\x64\Release\ClientLogging.exe
-C:\Marcus\Dev\ClientLogging\ClientLogging\bin\x64\Release\ClientLogging.pdb
-C:\Marcus\Dev\ClientLogging\ClientLogging\bin\x64\Release\System.Data.SQLite.dll
-C:\Marcus\Dev\ClientLogging\ClientLogging\obj\x64\Release\ClientLogging.csproj.CopyComplete
-C:\Marcus\Dev\ClientLogging\ClientLogging\obj\x64\Release\ClientLogging.exe
-C:\Marcus\Dev\ClientLogging\ClientLogging\obj\x64\Release\ClientLogging.pdb
 C:\Marcus\Dev\ClientLogging\ClientLogging\bin\x64\x64\ClientLogging.exe.config
 C:\Marcus\Dev\ClientLogging\ClientLogging\bin\x64\x64\ClientLogging.exe
 C:\Marcus\Dev\ClientLogging\ClientLogging\bin\x64\x64\ClientLogging.pdb
@@ -24,4 +17,11 @@ C:\Marcus\Dev-public\ClientLogging\ClientLogging\bin\x64\Release\System.Data.SQL
 C:\Marcus\Dev-public\ClientLogging\ClientLogging\obj\x64\Release\ClientLogging.csproj.CopyComplete
 C:\Marcus\Dev-public\ClientLogging\ClientLogging\obj\x64\Release\ClientLogging.exe
 C:\Marcus\Dev-public\ClientLogging\ClientLogging\obj\x64\Release\ClientLogging.pdb
-C:\Marcus\Dev-public\ClientLogging\ClientLogging\obj\x64\Release\ClientLogging.csprojAssemblyReference.cache
+C:\Marcus\Dev\ClientLogging\ClientLogging\bin\x64\Release\ClientLogging.exe.config
+C:\Marcus\Dev\ClientLogging\ClientLogging\bin\x64\Release\ClientLogging.exe
+C:\Marcus\Dev\ClientLogging\ClientLogging\bin\x64\Release\ClientLogging.pdb
+C:\Marcus\Dev\ClientLogging\ClientLogging\bin\x64\Release\System.Data.SQLite.dll
+C:\Marcus\Dev\ClientLogging\ClientLogging\obj\x64\Release\ClientLogging.csproj.CopyComplete
+C:\Marcus\Dev\ClientLogging\ClientLogging\obj\x64\Release\ClientLogging.exe
+C:\Marcus\Dev\ClientLogging\ClientLogging\obj\x64\Release\ClientLogging.pdb
+C:\Marcus\Dev\ClientLogging\ClientLogging\bin\x64\Release\SQLite.Interop.dll

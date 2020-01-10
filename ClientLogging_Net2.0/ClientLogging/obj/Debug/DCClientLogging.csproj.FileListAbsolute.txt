@@ -1,0 +1,7 @@
+C:\Marcus\Dev\DCClientLogging\DCClientLogging\bin\Debug\DCClientLogging.exe.config
+C:\Marcus\Dev\DCClientLogging\DCClientLogging\bin\Debug\DCClientLogging.exe
+C:\Marcus\Dev\DCClientLogging\DCClientLogging\bin\Debug\DCClientLogging.pdb
+C:\Marcus\Dev\DCClientLogging\DCClientLogging\bin\Debug\System.Data.SQLite.dll
+C:\Marcus\Dev\DCClientLogging\DCClientLogging\obj\Debug\DCClientLogging.csproj.CopyComplete
+C:\Marcus\Dev\DCClientLogging\DCClientLogging\obj\Debug\DCClientLogging.exe
+C:\Marcus\Dev\DCClientLogging\DCClientLogging\obj\Debug\DCClientLogging.pdb
