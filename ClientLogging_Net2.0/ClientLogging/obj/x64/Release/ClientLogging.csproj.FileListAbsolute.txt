@@ -25,3 +25,11 @@ C:\Marcus\Dev\ClientLogging\ClientLogging\obj\x64\Release\ClientLogging.csproj.C
 C:\Marcus\Dev\ClientLogging\ClientLogging\obj\x64\Release\ClientLogging.exe
 C:\Marcus\Dev\ClientLogging\ClientLogging\obj\x64\Release\ClientLogging.pdb
 C:\Marcus\Dev\ClientLogging\ClientLogging\bin\x64\Release\SQLite.Interop.dll
+C:\Marcus\Dev-public\ClientLogging_Net2.0\ClientLogging\bin\x64\Release\SQLite.Interop.dll
+C:\Marcus\Dev-public\ClientLogging_Net2.0\ClientLogging\bin\x64\Release\ClientLogging.exe.config
+C:\Marcus\Dev-public\ClientLogging_Net2.0\ClientLogging\bin\x64\Release\ClientLogging.exe
+C:\Marcus\Dev-public\ClientLogging_Net2.0\ClientLogging\bin\x64\Release\ClientLogging.pdb
+C:\Marcus\Dev-public\ClientLogging_Net2.0\ClientLogging\bin\x64\Release\System.Data.SQLite.dll
+C:\Marcus\Dev-public\ClientLogging_Net2.0\ClientLogging\obj\x64\Release\ClientLogging.csproj.CopyComplete
+C:\Marcus\Dev-public\ClientLogging_Net2.0\ClientLogging\obj\x64\Release\ClientLogging.exe
+C:\Marcus\Dev-public\ClientLogging_Net2.0\ClientLogging\obj\x64\Release\ClientLogging.pdb
